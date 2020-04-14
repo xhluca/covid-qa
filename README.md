@@ -10,12 +10,13 @@
 
 ### Data summary
 
-* 400+ pairs collected from 15 English news websites across 4 continents
-* 600+ pairs queried from 26 Stackexchange communities, grouped in 3 distinct categories
-* 800+ pairs retrieved from CDC and WHO's official FAQs, available in 8 languages
-* All the pairs are cleaned with regex, labelled with metadata, converted to tables, and included heuristically-selected negative samples (wrong answers).
+* **400+ pairs** collected from 15 English news websites across 4 continents.
+* **600+ pairs** queried from 26 Stackexchange communities, grouped in 3 distinct categories.
+* **800+ pairs** retrieved from CDC and WHO's official FAQs, available in 8 languages.
+* All pairs are cleaned with regex, labelled with metadata, converted to tables, and stored in CSV files.
+* Each question also includes a heuristically-sampled negative (wrong) answer. The selection process varies depending on the dataset.
 
-In addition, we included a clean, tabular version of 290k non-COVID Q&A pairs, queried from the same Stackexchange communities. You can [download it here](https://www.kaggle.com/xhlulu/stackexchange-qa-pairs).
+In addition, we included a clean, tabular version of **290k non-COVID Q&A pairs**, queried from the same Stackexchange communities. You can [download it here](https://www.kaggle.com/xhlulu/stackexchange-qa-pairs).
 
 ### Model summary
 
