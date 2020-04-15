@@ -46,6 +46,7 @@ community.head()
 
 ## Model Usage
 
+### Preliminary
 First, make sure to download the data from Kaggle or from the alternative link, and unzip the directory. Also, make sure to have the `utils` script in your current directory. For example:
 
 ```
@@ -60,8 +61,109 @@ pip install transformers==2.8.0
 pip install tensorflow>=2.1.0 # or pip install tensorflow-gpu>=2.1.0
 ```
 
-Then, open Python and load the model using transformers:
-```
+### Helper function
+Then, define the following helper functions in your Python script:
+```python
+import os
+import pickle
+
+import tensorflow as tf
+import tensorflow.keras.layers as L
 import transformers as trfm
 
+def build_model(transformer, max_len=None):
+    """
+    https://www.kaggle.com/xhlulu/jigsaw-tpu-distilbert-with-huggingface-and-keras
+    """
+    input_ids = L.Input(shape=(max_len, ), dtype=tf.int32)
+    
+    x = transformer(input_ids)[0]
+    x = x[:, 0, :]
+    x = L.Dense(1, activation='sigmoid', name='sigmoid')(x)
+    
+    # BUILD AND COMPILE MODEL
+    model = tf.keras.Model(inputs=input_ids, outputs=x)
+    model.compile(
+        loss='binary_crossentropy', 
+        metrics=['accuracy'], 
+        optimizer=Adam(lr=1e-5)
+    )
+    
+    return model
+
+def load_model(sigmoid_dir='transformer', transformer_dir='transformer', architecture="electra", max_len=None):
+    """
+    Special function to load a keras model that uses a transformer layer
+    """
+    sigmoid_path = os.path.join(sigmoid_dir,'sigmoid.pickle')
+    
+    if architecture == 'electra':
+        transformer = trfm.TFElectraModel.from_pretrained(transformer_dir)
+    else:
+        transformer = trfm.TFAutoModel.from_pretrained(transformer_dir)
+    model = build_model(transformer, max_len=max_len)
+    
+    sigmoid = pickle.load(open(sigmoid_path, 'rb'))
+    model.get_layer('sigmoid').set_weights(sigmoid)
+    
+    return model
 ```
+
+### Loading model
+Then, you can load it as a `tf.keras` model:
+
+```python
+model = load_model(
+  sigmoid_dir='/path/to/the/model/sigmoid.pickle', 
+  transformer_dir='/path/to/model/transformer/'
+)
+```
+
+Sometimes the sigmoid file is not stored in the same directory as the transformer files, so make sure to load it correctly.
+
+### Loading tokenizer
+
+The tokenizer used is exactly the same as the original tokenizers that we loaded from huggingface model repository. E.g.:
+```python
+tokenizer = trfm.ElectraTokenizer.from_pretrained("google/electra-small-discriminator")
+```
+
+You can also load the fast tokenizer from Huggingface's `tokenizers` library:
+```python
+fast_tokenizer = BertWordPieceTokenizer('/path/to/model/vocab.txt', lowercase=True, add_special_tokens=True)
+```
+
+Then, you can use the following function to encode the questions and answers:
+```
+def fast_encode(texts, tokenizer, chunk_size=256, maxlen=512, enable_padding=False):
+    """
+    ---
+    Inputs:
+        tokenizer: the `fast_tokenizer` that we imported from the tokenizers library
+    """
+    tokenizer.enable_truncation(max_length=maxlen)
+    if enable_padding:
+        tokenizer.enable_padding(max_length=maxlen)
+    
+    all_ids = []
+    
+    for i in tqdm(range(0, len(texts), chunk_size)):
+        text_chunk = texts[i:i+chunk_size].tolist()
+        encs = tokenizer.encode_batch(text_chunk)
+        all_ids.extend([enc.ids for enc in encs])
+    
+    return np.array(all_ids)
+```
+
+### Advanced model usage
+
+For more advanced and complete examples of using the models, please check out those notebooks:
+* [Community-QA](https://www.kaggle.com/xhlulu/evaluate-models-on-community-data)
+* [News-QA](https://www.kaggle.com/xhlulu/evaluate-models-on-news-data)
+* [Multilingual-QA](https://www.kaggle.com/xhlulu/evaluate-models-on-multilingual-data)
+
+### Future works for ease of access
+
+We are planning to host the base model on the Huggingface repository. Currently, we are faced with problems concerning the sigmoid layer, which can't be easily added to the model. We will evaluate the next step in order to make the model available.
+
+We are also planning to make a `utils` file that you can download off this repo, so you won't need to copy paste those files.
