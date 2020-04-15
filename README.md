@@ -114,12 +114,12 @@ Then, you can load it as a `tf.keras` model:
 
 ```python
 model = load_model(
-  sigmoid_dir='/path/to/the/model/sigmoid.pickle', 
-  transformer_dir='/path/to/model/transformer/'
+  sigmoid_dir='/path/to/sigmoid/dir/', 
+  transformer_dir='/path/to/transformer/dir/'
 )
 ```
 
-Sometimes the sigmoid file is not stored in the same directory as the transformer files, so make sure to load it correctly.
+Sometimes the sigmoid file is not stored in the same directory as the transformer files, so make sure to double check it.
 
 ### Loading tokenizer
 
@@ -130,8 +130,10 @@ tokenizer = trfm.ElectraTokenizer.from_pretrained("google/electra-small-discrimi
 
 You can also load the fast tokenizer from Huggingface's `tokenizers` library:
 ```python
+from tokenizers import BertWordPieceTokenizer
 fast_tokenizer = BertWordPieceTokenizer('/path/to/model/vocab.txt', lowercase=True, add_special_tokens=True)
 ```
+Where `add_special_tokens` depends on whether you are using adding the tags manually or not.
 
 Then, you can use the following function to encode the questions and answers:
 ```
