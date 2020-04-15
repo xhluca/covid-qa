@@ -4,9 +4,13 @@
 
 ### Links
 
-* 💾 [Official Kaggle Dataset](https://www.kaggle.com/xhlulu/covidqa)
-* 💻 [Official Github Repository](https://github.com/xhlulu/covid-qa)
-* :books: [Technical Report on Arxiv]() (To be added)
+💾 [Official Kaggle Dataset](https://www.kaggle.com/xhlulu/covidqa)
+
+💻 [Official Github Repository](https://github.com/xhlulu/covid-qa)
+
+:books: [Technical Report on Arxiv]() (To be added)
+
+:bookmark: [Alternative Download Links](https://github.com/xhlulu/covid-qa/releases)
 
 ### Data summary
 
@@ -29,5 +33,35 @@ In addition, we included a clean, tabular version of **290k non-COVID Q&A pairs*
 
 TBD
 
+## Data Usage
+
+To load the data, simply download the data from Kaggle or from the alternative link. Then, use pandas to load it:
+
+```python
+import pandas as pd
+
+community = pd.read_csv("path/to/dataset/community.csv")
+community.head()
+```
+
 ## Model Usage
 
+First, make sure to download the data from Kaggle or from the alternative link, and unzip the directory. Also, make sure to have the `utils` script in your current directory. For example:
+
+```
+wget https://github.com/xhlulu/covid-qa/releases/download/v1.0/electra-small-healthtap.zip
+unzip electra-small-healthtap.zip
+wget 
+```
+
+Then, make sure that transformers and tensorflow are correctly installed:
+```
+pip install transformers==2.8.0
+pip install tensorflow>=2.1.0 # or pip install tensorflow-gpu>=2.1.0
+```
+
+Then, open Python and load the model using transformers:
+```
+import transformers as trfm
+
+```
