@@ -30,20 +30,20 @@ In addition, we included a clean, tabular version of **290k non-COVID Q&A pairs*
 
 ### How do the baseline models work?
 
-In order to make it accessible, we designed our baselines with the simplest Q&A mechanism available for transformer models: concatenate the question with the answer, and let the model learn to predict if it is a correct match (label of 1) or incorrect match (label of 0). Here's an example:
+In order to make it accessible, we designed our baselines with the simplest Q&A mechanism available for transformer models: concatenate the question with the answer, and let the model learn to predict if it is a correct match (label of 1) or incorrect match (label of 0). Here's an example of how we process the data:
 
-![](HowDoesCOVIDQAWork-Page-1.svg)
+[![](images/HowDoesCOVIDQAWork-Page-1.svg)](#)
 
 
 ### Why do we need this type of Q&A Models?
 
-The baseline do not auto-regressively generate an answer, so it is not a generative model. Instead, it can tell you if a pair of question and answer is reasonable or not. This is useful when you have a new question (e.g. asked by a user) and a small set of candidate answers (that we pre-filtered from a database of answers), and your goal is to either select the best answer, or rerank those candidates in order of relevance. 
+The baseline do not auto-regressively generate an answer, so it is not a generative model. Instead, it can tell you if a pair of question and answer is reasonable or not. This is useful when you have a new question (e.g. asked by a user) and a small set of candidate answers (that we pre-filtered from a database of answers), and your goal is to either select the best answer, or rerank those candidates in order of relevance. The latter is used by [Neural Covidex](https://arxiv.org/abs/2004.05125), a search engine about COVID-19. Here's how you could visually think about it:
 
-![](HowDoesCOVIDQAWork-Page-2.svg)
+[![](images/HowDoesCOVIDQAWork-Page-2.svg)](#)
 
 ### Are you releasing a new model? Can we start using it for our projects?
 
-The goal of COVID-QA is not to release new models, but to **provide a dataset for evaluating your own Q&A models**, along with strong **baselines that you can easily reproduce and improve**. Both the data and the model are released to help you for your research projects or R&D prototypes. **If you are planning to build and deploy any model or system that uses COVID-QA in some way, please ensure that it is sufficiently tested and validated by medical and public health experts.** 
+The goal of COVID-QA is not to release new models, but to **provide a dataset for evaluating your own Q&A models**, along with strong **baselines that you can easily reproduce and improve**. Both the data and models are there to help you for your research projects or R&D prototypes. **If you are planning to build and deploy any model or system that uses COVID-QA in some way, please ensure that it is sufficiently tested and validated by medical and public health experts. The content of this collection has not been medically validated.**
 
 ### Cite this work
 
@@ -68,12 +68,11 @@ First, make sure to download the data from Kaggle or from the alternative link, 
 ```
 wget https://github.com/xhlulu/covid-qa/releases/download/v1.0/electra-small-healthtap.zip
 unzip electra-small-healthtap.zip
-wget 
 ```
 
 Then, make sure that transformers and tensorflow are correctly installed:
 ```
-pip install transformers==2.8.0
+pip install transformers>=2.8.0
 pip install tensorflow>=2.1.0 # or pip install tensorflow-gpu>=2.1.0
 ```
 
