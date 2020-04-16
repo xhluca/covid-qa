@@ -175,9 +175,7 @@ def fast_encode(texts, tokenizer, chunk_size=256, maxlen=512, enable_padding=Fal
 ### Advanced model usage
 
 For more advanced and complete examples of using the models, please check out those notebooks:
-* [Community-QA](https://www.kaggle.com/xhlulu/evaluate-models-on-community-data)
-* [News-QA](https://www.kaggle.com/xhlulu/evaluate-models-on-news-data)
-* [Multilingual-QA](https://www.kaggle.com/xhlulu/evaluate-models-on-multilingual-data)
+
 
 ### Future works for ease of access
 
@@ -185,8 +183,40 @@ We are hoping to potentially host the base model on the Huggingface repository. 
 
 We are also planning to make a `utils` file that you can download off this repo, so you won't need to copy paste those files.
 
-## Kaggle Notebooks
+## Source Code and Kaggle Notebooks
 
-TBA
+For this project, our workflow mostly consisted of pipelines of Kaggle notebooks that first preprocess the data, then train a model, and finally evaluate them on each of the tasks we are proposing. To reproduce our results, simply click "Copy and Edit" any of the notebooks below. If you are not familiar with Kaggle, [check out this video](https://www.youtube.com/watch?v=O1P4r0Iy55U).
+
+For archival purposes, we also included all the notebooks inside this repository under `notebooks`.
+
+### Preprocessing
+
+The following notebooks show how to preprocess the relevant datasets for training:
+* [Preprocess HealthTap Data](https://www.kaggle.com/xhlulu/healthtap-eda)
+* [Preprocess StackExchange Data](https://www.kaggle.com/xhlulu/stackexchange-eda-and-preprocess)
+
+Since the StackExchange dataset consumed a lot of memory, we decided to create and save the encoded input of the training data in a separate notebook:
+* [Encode StackExchange for ELECTRA models](https://www.kaggle.com/xhlulu/stackexchange-encode-for-electra)
+* [Encode StackExchange for Multilingual DistilBERT](https://www.kaggle.com/xhlulu/encode-stackexchange-for-mdistilbert)
+
+### Model Training
+
+Each of the 6 baselines were trained using a TPU notebook. You can find them here:
+* [Finetune Electra Small on HealthTap](https://www.kaggle.com/xhlulu/healthtap-joint-electra-small)
+* [Finetune Electra Base on HealthTap](https://www.kaggle.com/xhlulu/healthtap-joint-electra-base)
+* [Finetune Electra Small on StackExchange](https://www.kaggle.com/xhlulu/stackexchange-finetune-electra-small)
+* [Finetune Electra Base on StackExchange](https://www.kaggle.com/xhlulu/stackexchange-finetune-electra-base)
+* [Finetune Multilingual DistilBERT on HealthTap](https://www.kaggle.com/xhlulu/finetune-mdistilbert-on-healthtap)
+* [Finetune Multilingual DistilBERT on StackExchange](https://www.kaggle.com/xhlulu/finetune-mdistilbert-on-stackexchange)
+
+### Model Validation
+
+* [Evaluate on Community-QA](https://www.kaggle.com/xhlulu/evaluate-models-on-community-data)
+* [Evaluate on News-QA](https://www.kaggle.com/xhlulu/evaluate-models-on-news-data)
+* [Evaluate on Multilingual-QA](https://www.kaggle.com/xhlulu/evaluate-models-on-multilingual-data)
 
 ## Results
+
+Below are some selected results from the output of our evaluation notebooks. Please check them out for more complete metrics!
+
+
