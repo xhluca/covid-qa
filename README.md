@@ -30,7 +30,7 @@ In addition, we included a clean, tabular version of **290k non-COVID Q&A pairs*
 
 ### How do the baseline models work?
 
-In order to make it accessible, we designed our baselines with the simplest Q&A mechanism available for transformer models: concatenate the question with the answer, and let the model learn to predict if it is a correct match (label of 1) or incorrect match (label of 0). Here's an example of how we process the data:
+In order to make it accessible, we designed our baselines with the simplest Q&A mechanism available for transformer models: concatenate the question with the answer, and let the model learn to predict if it is a correct match (label of 1) or incorrect match (label of 0). Ideally, when trained correctly, we want our model to behave this way:
 
 ![](images/HowDoesCOVIDQAWork-Page-1.svg)
 
