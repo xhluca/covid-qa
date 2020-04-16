@@ -174,7 +174,7 @@ def fast_encode(texts, tokenizer, chunk_size=256, maxlen=512, enable_padding=Fal
 
 ### Advanced model usage
 
-For more advanced and complete examples of using the models, please check out those notebooks:
+For more advanced and complete examples of using the models, please check out the [model evaluation section](#model-validation)
 
 
 ### Future works for ease of access
