@@ -26,7 +26,7 @@ In addition, we included a clean, tabular version of **290k non-COVID Q&A pairs*
 * Electra-small and Electra-base, both trained on 290k question and answer pairs from Stackexchange.
 * 2 versions of Multilingual DistilBERT, trained on Healthtap and on Stackexchange, respectively.
 * All the models were finetuned in `tf.keras` on Kaggle's TPUs. 
-* All the training scripts are available on Kaggle, and can be easily rerun. Check out [this section](#kaggle-notebooks) for more information.
+* All the training scripts are available on Kaggle, and can be easily rerun. Check out [this section](#source-code-and-kaggle-notebooks) for more information.
 
 ### How do the baseline models work?
 
