@@ -8,9 +8,7 @@
 
 💻 [Official Github Repository](https://github.com/xhlulu/covid-qa)
 
-:books: [Technical Report on Arxiv]() (To be added)
-
-:bookmark: [Alternative Download Links](https://github.com/xhlulu/covid-qa/releases)
+:bookmark: [Alternate Download Link](https://github.com/xhlulu/covid-qa/releases)
 
 ### Data summary
 
@@ -27,7 +25,8 @@ In addition, we included a clean, tabular version of **290k non-COVID Q&A pairs*
 * Electra-small and Electra-base, both trained on 500k subsample of [Healthtap Q&A pairs](https://github.com/durakkerem/Medical-Question-Answer-Datasets).
 * Electra-small and Electra-base, both trained on 290k question and answer pairs from Stackexchange.
 * 2 versions of Multilingual DistilBERT, trained on Healthtap and on Stackexchange, respectively.
-* All the models were finetuned in `tf.keras` on Kaggle's TPUs. All the training scripts will be made available for reproducibility.
+* All the models were finetuned in `tf.keras` on Kaggle's TPUs. 
+* All the training scripts are public on Kaggle reproducibility.
 
 ### Cite this work
 
@@ -166,6 +165,12 @@ For more advanced and complete examples of using the models, please check out th
 
 ### Future works for ease of access
 
-We are planning to host the base model on the Huggingface repository. Currently, we are faced with problems concerning the sigmoid layer, which can't be easily added to the model. We will evaluate the next step in order to make the model available.
+We are hoping to potentially host the base model on the Huggingface repository. Currently, we are faced with problems concerning the sigmoid layer, which can't be easily added to the model. We will evaluate the next step in order to make the model available.
 
 We are also planning to make a `utils` file that you can download off this repo, so you won't need to copy paste those files.
+
+## Kaggle Notebooks
+
+TBA
+
+## 
