@@ -16,7 +16,7 @@
 * **600+ pairs** queried from 26 Stackexchange communities, grouped in 3 distinct categories.
 * **800+ pairs** retrieved from CDC and WHO's official FAQs, available in 8 languages.
 * All pairs are cleaned with regex, labelled with metadata, converted to tables, and stored in CSV files.
-* Each question also includes a heuristically-sampled negative (wrong) answer. The selection process varies depending on the dataset.
+* Each question also includes a heuristically-sampled negative (incorrect) answer. The selection process varies depending on the dataset, and is optional.
 
 In addition, we included a clean, tabular version of **290k non-COVID Q&A pairs**, queried from the same Stackexchange communities. You can [download it here](https://www.kaggle.com/xhlulu/stackexchange-qa-pairs).
 
@@ -26,11 +26,28 @@ In addition, we included a clean, tabular version of **290k non-COVID Q&A pairs*
 * Electra-small and Electra-base, both trained on 290k question and answer pairs from Stackexchange.
 * 2 versions of Multilingual DistilBERT, trained on Healthtap and on Stackexchange, respectively.
 * All the models were finetuned in `tf.keras` on Kaggle's TPUs. 
-* All the training scripts are public on Kaggle reproducibility.
+* All the training scripts are available on Kaggle, and can be easily rerun. Check out [this section](#kaggle-notebooks) for more information.
+
+### How do the baseline models work?
+
+In order to make it accessible, we designed our baselines with the simplest Q&A mechanism available for transformer models: concatenate the question with the answer, and let the model learn to predict if it is a correct match (label of 1) or incorrect match (label of 0). Here's an example:
+
+![](HowDoesCOVIDQAWork-Page-1.svg)
+
+
+### Why do we need this type of Q&A Models?
+
+The baseline do not auto-regressively generate an answer, so it is not a generative model. Instead, it can tell you if a pair of question and answer is reasonable or not. This is useful when you have a new question (e.g. asked by a user) and a small set of candidate answers (that we pre-filtered from a database of answers), and your goal is to either select the best answer, or rerank those candidates in order of relevance. 
+
+![](HowDoesCOVIDQAWork-Page-2.svg)
+
+### Are you releasing a new model? Can we start using it for our projects?
+
+The goal of COVID-QA is not to release new models, but to **provide a dataset for evaluating your own Q&A models**, along with strong **baselines that you can easily reproduce and improve**. Both the data and the model are released to help you for your research projects or R&D prototypes. **If you are planning to build and deploy any model or system that uses COVID-QA in some way, please ensure that it is sufficiently tested and validated by medical and public health experts.** 
 
 ### Cite this work
 
-TBD
+We don't currently have a paper about this work. Feel free to link to this repository, or to the Kaggle dataset. Please reach out if you are interested in citing a technical report.
 
 ## Data Usage
 
@@ -135,7 +152,7 @@ fast_tokenizer = BertWordPieceTokenizer('/path/to/model/vocab.txt', lowercase=Tr
 Where `add_special_tokens` depends on whether you are using adding the tags manually or not.
 
 Then, you can use the following function to encode the questions and answers:
-```
+```python
 def fast_encode(texts, tokenizer, chunk_size=256, maxlen=512, enable_padding=False):
     """
     ---
@@ -173,4 +190,4 @@ We are also planning to make a `utils` file that you can download off this repo,
 
 TBA
 
-## 
+## Results
