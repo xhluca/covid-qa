@@ -219,4 +219,6 @@ Each of the 6 baselines were trained using a TPU notebook. You can find them her
 
 Below are some selected results from the output of our evaluation notebooks. Please check them out for more complete metrics!
 
+## Acknowledgements
 
+Thank you to: @JunhaoWang and @Makeshn for helping build the dataset from scratch; @sivareddyg for the mentorship and giving me the opportunity to build the models; @alexissmirnov for sharing the HealthTap dataset, which helped us train more robust models; @patricklecuyer for making computation resources available to us; Akshatha, Ashita, Louis-Philippe, Jeremy, Joao, Joumana, Mirko for the helpful and insightful discussions. Last but not least, thank you to the entire [COVID-19 Chatbot Taskforce](https://mila.quebec/en/mila-and-its-partners-rally-the-scientific-community-to-develop-novel-data-driven-solutions-to-assist-with-covid-19-outbreak/) (Mila/Dialogue/Nuance); this project would not have been possible without the support and inspiration from all of you.
