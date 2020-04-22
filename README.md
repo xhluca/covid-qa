@@ -215,10 +215,88 @@ Each of the 6 baselines were trained using a TPU notebook. You can find them her
 * [Evaluate on News-QA](https://www.kaggle.com/xhlulu/evaluate-models-on-news-data)
 * [Evaluate on Multilingual-QA](https://www.kaggle.com/xhlulu/evaluate-models-on-multilingual-data)
 
-## Results
-
-Below are some selected results from the output of our evaluation notebooks. Please check them out for more complete metrics!
-
 ## Acknowledgements
 
 Thank you to: @JunhaoWang and @Makeshn for helping build the dataset from scratch; @sivareddyg for the mentorship and giving me the opportunity to build the models; @alexissmirnov for sharing the HealthTap dataset, which helped us train more robust models; @patricklecuyer for making computation resources available to us; Akshatha, Ashita, Louis-Philippe, Jeremy, Joao, Joumana, Mirko for the helpful and insightful discussions. Last but not least, thank you to the entire [COVID-19 Chatbot Taskforce](https://mila.quebec/en/mila-and-its-partners-rally-the-scientific-community-to-develop-novel-data-driven-solutions-to-assist-with-covid-19-outbreak/) (Mila/Dialogue/Nuance); this project would not have been possible without the support and inspiration from all of you.
+
+## Aggregated Results
+
+Below are some aggregated results (Macro-averaged across all sources) from the output of our evaluation notebooks. Please check them out for more complete metrics! 
+
+* `ht`: HealthTap
+* `se`: StackExchange
+* `ap`: Average Precision
+* `roc_auc`: Area under ROC curve
+
+### Community-QA
+
+|          |   electra_ht_small |   electra_ht_base |   electra_se_small |   electra_se_base |
+|:---------|-------------------:|------------------:|-------------------:|------------------:|
+| ap       |             0.5609 |            0.6792 |             0.9429 |            0.9396 |
+| roc_auc  |             0.5898 |            0.7097 |             0.9559 |            0.9586 |
+| f1_score |             0.6744 |            0.6817 |             0.8946 |            0.915  |
+| accuracy |             0.5218 |            0.5374 |             0.891  |            0.912  |
+
+### Multilingual-QA
+
+|          |   mdistilbert_ht |   mdistilbert_se |
+|:---------|-----------------:|-----------------:|
+| ap       |           0.7635 |           0.5611 |
+| roc_auc  |           0.7709 |           0.5963 |
+| f1_score |           0.7219 |           0.688  |
+| accuracy |           0.6222 |           0.5501 |
+
+### News-QA
+
+|          |   electra_ht_small |   electra_ht_base |   electra_se_small |   electra_se_base |
+|:---------|-------------------:|------------------:|-------------------:|------------------:|
+| ap       |             0.9038 |            0.9273 |             0.6691 |            0.7553 |
+| roc_auc  |             0.9186 |            0.9327 |             0.7164 |            0.8053 |
+| f1_score |             0.8433 |            0.8527 |             0.7113 |            0.7762 |
+| accuracy |             0.842  |            0.8524 |             0.659  |            0.7266 |
+
+## AP score by source
+
+Below are the average precisions (AP) for each source, for every task.
+
+### Multilingual-QA
+
+|            |   mdistilbert_ht |   mdistilbert_se |
+|:-----------|-----------------:|-----------------:|
+| chinese    |           0.8075 |           0.5281 |
+| english    |           0.8191 |           0.6495 |
+| korean     |           0.5926 |           0.5091 |
+| spanish    |           0.7892 |           0.5546 |
+| vietnamese |           0.6264 |           0.5994 |
+| arabic     |           0.7339 |           0.5669 |
+| french     |           0.8605 |           0.5876 |
+| russian    |           0.7951 |           0.4844 |
+
+### News-QA
+
+|                |   electra_ht_small |   electra_ht_base |   electra_se_small |   electra_se_base |
+|:---------------|-------------------:|------------------:|-------------------:|------------------:|
+| ABC Australia  |             0.8968 |            0.886  |             0.6931 |            0.74   |
+| ABC News       |             0.8825 |            0.9334 |             0.6492 |            0.6274 |
+| BBC            |             0.8977 |            0.9259 |             0.7382 |            0.8679 |
+| CNN            |             0.9525 |            0.9436 |             0.7052 |            0.8598 |
+| CTV            |             0.8225 |            0.9339 |             0.7062 |            0.8579 |
+| Forbes         |             0.7534 |            0.8302 |             0.7077 |            0.7361 |
+| LA Times       |             0.875  |            0.95   |             0.7095 |            0.6458 |
+| NDTV           |             0.8675 |            0.8915 |             0.679  |            0.7449 |
+| NPR            |             0.972  |            0.9637 |             0.6752 |            0.8085 |
+| NY Times       |             0.9604 |            0.9455 |             0.6489 |            0.8077 |
+| SCMP           |             0.9415 |            0.9464 |             0.8155 |            0.8523 |
+| The Australian |             0.8179 |            0.8    |             0.607  |            0.8556 |
+| The Hill       |             0.9377 |            0.9734 |             0.6382 |            0.7539 |
+| Times Of India |             0.9869 |            0.9824 |             0.7823 |            0.7366 |
+| USA Today      |             0.8995 |            0.9391 |             0.7237 |            0.7689 |
+
+### Community-QA
+
+|             |   electra_ht_small |   electra_ht_base |   electra_se_small |   electra_se_base |
+|:------------|-------------------:|------------------:|-------------------:|------------------:|
+| biomedical  |             0.5851 |            0.6902 |             0.9508 |            0.947  |
+| general     |             0.571  |            0.7097 |             0.9538 |            0.956  |
+| expert      |             0.5265 |            0.6233 |             0.8994 |            0.8858 |
+
